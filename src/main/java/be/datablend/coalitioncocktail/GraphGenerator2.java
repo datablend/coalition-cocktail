@@ -17,7 +17,7 @@ import java.util.Map;
  * Time: 13:58
  * To change this template use File | Settings | File Templates.
  */
-public class GraphGenerator {
+public class GraphGenerator2 {
 
     Map<String,String> handleMap = new HashMap<String,String>();
     Map<String,Integer> partyMap = new HashMap<String, Integer>();
@@ -126,7 +126,7 @@ public class GraphGenerator {
     }
 
     public static void main(String[] args) throws IOException {
-        GraphGenerator generator = new GraphGenerator();
+        GraphGenerator2 generator = new GraphGenerator2();
         generator.createHandleMap();
         generator.createSentimentMap();
         generator.generateGraph();

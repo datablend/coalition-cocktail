@@ -6,3 +6,5 @@ coalition-graph/
 *.iml
 
 .idea/inspectionProfiles/profiles_settings.xml
+
+coalition-graph-positive/
