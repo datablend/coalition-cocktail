@@ -59,27 +59,29 @@ public class GraphGenerator {
         while ((str = in.readLine()) != null) {
             System.out.println(str);
             String[] row = str.split("\t");
-            String handles = row[0] + ";" + row[1];
-            String[] mentionedHandles = handles.toLowerCase().replace("@","").split(";");
-            String sentiment = row[6];
-            String sentimentHandle = "";
-            System.out.println(mentionedHandles[0]);
-            for (int i = 0; i < mentionedHandles.length; i++) {
-                String handle = mentionedHandles[i];
-                for (int j = i + 1; j < mentionedHandles.length; j++) {
-                    String mentionedHandle = mentionedHandles[j];
-                    if (handleMap.containsKey(handle) && handleMap.containsKey(mentionedHandle) && !handle.equals(mentionedHandle)) {
-                        if (mentionedHandle.compareTo(handle) < 1) {
-                            sentimentHandle = mentionedHandle + "&&&&" + handle;
+            if (!(row.length < 7)) {
+                String handles = row[0] + ";" + row[1];
+                String[] mentionedHandles = handles.toLowerCase().replace("@","").split(";");
+                String sentiment = row[6];
+                String sentimentHandle = "";
+                System.out.println(mentionedHandles[0]);
+                for (int i = 0; i < mentionedHandles.length; i++) {
+                    String handle = mentionedHandles[i];
+                    for (int j = i + 1; j < mentionedHandles.length; j++) {
+                        String mentionedHandle = mentionedHandles[j];
+                            if (handleMap.containsKey(handle) && handleMap.containsKey(mentionedHandle) && !handle.equals(mentionedHandle)) {
+                            if (mentionedHandle.compareTo(handle) < 1) {
+                                sentimentHandle = mentionedHandle + "&&&&" + handle;
+                            }
+                            else {
+                                sentimentHandle = handle + "&&&&" + mentionedHandle;
+                            }
+                            if (!sentimentMap.containsKey(sentimentHandle)) {
+                                sentimentMap.put(sentimentHandle,0);
+                            }
+                            int value = getValue(sentiment);
+                            sentimentMap.put(sentimentHandle,sentimentMap.get(sentimentHandle) + value);
                         }
-                        else {
-                            sentimentHandle = handle + "&&&&" + mentionedHandle;
-                        }
-                        if (!sentimentMap.containsKey(sentimentHandle)) {
-                            sentimentMap.put(sentimentHandle,0);
-                        }
-                        int value = getValue(sentiment);
-                        sentimentMap.put(sentimentHandle,sentimentMap.get(sentimentHandle) + value);
                     }
                 }
             }
@@ -88,7 +90,7 @@ public class GraphGenerator {
     }
 
     private void createHandleMap() throws IOException {
-        CSVReader csvReader = new CSVReader(new FileReader("handles.tsv"), '\t');
+        CSVReader csvReader = new CSVReader(new FileReader("./data/handles.tsv"), '\t');
         String[] row;
 
         int partyIndex = 1;
