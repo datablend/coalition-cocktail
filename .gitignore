@@ -1,0 +1,8 @@
+.idea/
+coalition-graph/
+
+*.class
+
+*.iml
+
+.idea/inspectionProfiles/profiles_settings.xml
