@@ -1,6 +1,6 @@
 <?php
 
-$string = file_get_contents("/Users/quentin/misc-repos/coalition-cocktail/untitled/accountsWithHandle.json");
+$string = file_get_contents("../data/accountsWithHandle.json");
 $json = json_decode($string, true);
 
     static $partijmap = array(
