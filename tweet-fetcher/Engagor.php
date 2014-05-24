@@ -19,8 +19,13 @@ class Engagor {
      * @param array[optional] $parameters The parameters to send with the request.
      * @return string
      */
-    public function api($endpoint, $parameters = array()) {
-        $url = $this->buildUrl($endpoint, $parameters);
+    public function api($endpoint, $parameters = array(), $fullUrl = false) {
+        if(!$fullUrl){
+            $url = $this->buildUrl($endpoint, $parameters);
+        } else {
+            $url = $endpoint;
+        }
+
         $options = array(
             CURLOPT_URL => $url,
             CURLOPT_FOLLOWLOCATION => true,

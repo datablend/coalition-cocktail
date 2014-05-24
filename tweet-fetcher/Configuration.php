@@ -5,6 +5,8 @@ class Configuration {
     const ACCESS_TOKEN = '5e301cf7cad5ed3aaadeda9823096bf2';
     const ACCOUNT_ID = 14083;
 
+    const TWITTER_USER_MENTION = '/(@(?:<b>;)?)([A-Za-z0-9_]+)/u';
+
     static $filters = array(
     );
 
